@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    
+    <!-- per vedere i bonus, commentare main.js e scommentare bonus.js -->
+    <script src="js/main.js"></script>
+    <!-- <script src="js/bonus.js"></script> -->
+
+    <title>Vue Slider</title>
+  </head>
+  
+  <body>
+    <header class="text-center">
+      <h1>CAROUSEL</h1>      
+    </header>
+
+    <main id="vue">
+      <div class="container">
+        <div class="carousel_container clearfix">
+          <div class="img_text_container float-start">
+            <!-- elemento da clonare -->
+            <div class="img_container active">
+              <img :src=" images[currentElement]['src'] " :alt=" 'img #' + (currentElement + 1) ">
+              <div class="text_container text-end">
+                <h2>{{images[currentElement]['title']}}</h2>
+                <p class="fs-4">
+                  {{images[currentElement]['description']}}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="img_preview_container float-start">
+            <!-- elemento da clonare -->
+            <img :class=" currentElement === i ? 'img_preview_active' : '' " :src="image.src" :alt=" 'img #' + (i + 1) " v-for='(image, i) in images'>
+          </div>
+
+          <div class="arrow_container d-flex flex-column align-items-center justify-content-between py-3">
+            <i @click='arrowUpOnClick' class="fas fa-arrow-alt-circle-up"></i>
+            <i @click='arrowDownOnClick' class="fas fa-arrow-alt-circle-down"></i>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
