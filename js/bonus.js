@@ -34,6 +34,7 @@ window.addEventListener('DOMContentLoaded', function () {
           },
         ],
         currentElement: 0,
+        autoArrowDown: 0
       },
       
       methods: {
@@ -42,17 +43,25 @@ window.addEventListener('DOMContentLoaded', function () {
           if (this.currentElement < 0 ) {
             this.currentElement = this.images.length - 1;
           }
+          this.resetInterval();
         },
         arrowDownOnClick () {
           this.currentElement++;
           if (this.currentElement === this.images.length ) {
             this.currentElement = 0;
           }
+          this.resetInterval();  
         },
+        resetInterval () {
+          clearInterval(this.autoArrowDown);
+          this.autoArrowDown = setInterval(() => {
+            this.arrowDownOnClick ();
+          }, 3000);
+        }
       },
       
       mounted () { 
-        let autoArrowDown = setInterval(() => {
+        this.autoArrowDown = setInterval(() => {
           this.arrowDownOnClick ();
         }, 3000);
       
